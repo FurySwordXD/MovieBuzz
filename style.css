@@ -9,11 +9,9 @@ body, html {
     line-height: 1.8;
 }
 
-img{
 
-}
 /* Create a Parallax Effect */
-.bgimg-1, .bgimg-3 {
+.bgimg-1, .bgimg-2, .bgimg-3 {
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -26,15 +24,13 @@ img{
     min-height: 100%;
 }
 
-/* Second image (Portfolio) */
+/* Second image (Movies) */
 .bgimg-2 {
     background-image: url("assets/Movie1.jpg");
-    min-height: 80%;
-    background-repeat: no-repeat;
-    background-size: cover;
+    min-height: 70%;
 }
 
-/* Third image (Contact) */
+/* Third image (About) */
 .bgimg-3 {
     background-image: url("assets/bg2.jpg");
     min-height: 70%;

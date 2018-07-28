@@ -13,8 +13,26 @@
         </div>
 
         <!-- Container (About Section) -->
-        <div class="w3-content w3-container w3-padding-64" id="about">
+        <div class="w3-content w3-container w3-padding-64" id="theatres">
             <h3 class="w3-center w3-text-teal">THEATRES</h3>
+            
+            <?php
+
+                $thatreImages = array('assets/theatres/hall1.jpg', 'assets/theatres/hall2.jpg');
+                for ($row = 0; $row < 2; $row++) 
+                {
+                    echo "<div class = 'w3-row'>";
+                    for ($column = 0; $column < 2; $column++) { 
+                        echo "<div class = 'w3-col l6 m6 s12 w3-center w3-padding-small'>";
+                        echo "<div class = 'w3-card-4' style = 'background-color: #353535'>";
+                        echo "<img src=". $thatreImages[($row * 4 + $column) % count($thatreImages)] ." class='w3-hover-opacity' style='width:100%'>";
+                        echo "<div class = 'w3-container'> Theatre name </div>";
+                        echo "</div></div>";
+                    }
+                    echo "</div><br>";
+                }
+
+            ?>
 
         </div>
 
@@ -24,14 +42,14 @@
             </div>
         </div>
 
-        <!-- Second Parallax Image with Portfolio Text -->
-        <div class="bgimg-2 w3-display-container w3-opacity-min" id="portfolio">
+        <!-- Second Parallax Image -->
+        <div class="bgimg-2 w3-display-container w3-opacity-min" id="movies">
             <div class="w3-display-middle" style="white-space:nowrap;">
                 <span class="w3-xxlarge w3-black w3-text-white w3-wide w3-center w3-padding-large w3-animate-opacity">MOVIES</span>
             </div>
         </div>
 
-        <!-- Container (Portfolio Section) -->
+        <!-- Container (Movies Section) -->
         <div class="w3-content w3-container w3-padding-64" >
             <h3 class="w3-center w3-text-teal">Now Showing...</h3>
 
@@ -64,7 +82,7 @@
         </div>
 
         <!-- Third Parallax Image with Portfolio Text -->
-        <div class="bgimg-3 w3-display-container w3-opacity-min" id="contact">
+        <div class="bgimg-3 w3-display-container w3-opacity-min" id="about">
             <div class="w3-display-middle">
                 <span class="w3-xxlarge w3-black w3-text-white w3-wide w3-center w3-padding-large w3-animate-opacity">CONTACT</span>
             </div>
