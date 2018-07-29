@@ -47,8 +47,12 @@
             <div class="w3-display-middle" style="white-space:nowrap;">
                 <span class="w3-xxlarge w3-black w3-text-white w3-wide w3-center w3-padding-large w3-animate-opacity">MOVIES</span>
             </div>
+            <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+                <span class="w3-badge demo w3-border w3-transparent w3-hover-white w3-white" onclick="showSlide(0)" id = "circle0"></span>
+                <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="showSlide(1)" id = "circle1"></span>
+            </div>
         </div>
-
+        
         <!-- Container (Movies Section) -->
         <div class="w3-content w3-container w3-padding-64" >
             <h3 class="w3-center w3-text-teal">Now Showing...</h3>

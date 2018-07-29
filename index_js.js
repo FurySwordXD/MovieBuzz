@@ -44,4 +44,41 @@ function toggleFunction() {
     }
 }
 
+var slideIndex = 0;
 
+function nextSlide(index)
+{
+    showSlide(slideIndex + index);
+}
+function showSlide(index)
+{
+    var movieImages = ['assets/Movie1.jpg', 'assets/Movie2.jpg'];
+    if(index >= movieImages.length)
+        index = 0;
+    else if(index < 0)
+        index = movieImages.length - 1;
+    if(index != slideIndex)
+    {    
+        slideIndex = index;
+        $(".bgimg-2").fadeOut(0);
+        $(".bgimg-2").css("background-image", "url('" + movieImages[index] + "')");
+        $(".bgimg-2").fadeIn(500);
+
+        /*$circles = $(".w3-badge");
+        for (var i = 0; i < circles.length; i++) {
+            circles[i].removeClass("w3-white");
+        }*/
+        switch(index)
+        {
+            case 0: 
+                $("#circle0").addClass("w3-white"); 
+                $("#circle1").removeClass("w3-white");
+                break;
+            case 1:
+                $("#circle1").addClass("w3-white"); 
+                $("#circle0").removeClass("w3-white");
+                break;
+        }
+        
+    }
+}
