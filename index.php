@@ -26,7 +26,7 @@
                         echo "<div class = 'w3-col l6 m6 s12 w3-center w3-padding-small'>";
                         echo "<div class = 'w3-card-4' style = 'background-color: #353535'>";
                         echo "<img src=". $thatreImages[($row * 4 + $column) % count($thatreImages)] ." class='w3-hover-opacity' style='width:100%'>";
-                        echo "<div class = 'w3-container'> Theatre name </div>";
+                        echo "<div class = 'w3-container w3-text-white'> Theatre name </div>";
                         echo "</div></div>";
                     }
                     echo "</div><br>";
@@ -57,7 +57,7 @@
         </div>
         
         <!-- Container (Movies Section) -->
-        <div class="w3-content w3-container w3-padding-64" >
+        <div class="w3-content w3-container w3-padding-64">
             <h3 class="w3-center w3-text-teal">Now Showing...</h3>
 
             <?php
@@ -72,7 +72,7 @@
                         echo "<div class = 'w3-col l3 m6 s12 w3-center w3-padding-small'>";
                         echo "<div class = 'w3-card-4' style = 'background-color: #353535'>";
                         echo "<img src=". $movieImages[($row * 4 + $column) % count($movieImages)] ." class='w3-hover-opacity' style='width:100%'>";
-                        echo "<div class = 'w3-container'> Movie name </div>";
+                        echo "<div class = 'w3-container w3-text-white'> Movie name </div>";
                         echo "</div></div>";
                     }
                     echo "</div><br>";

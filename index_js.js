@@ -74,3 +74,8 @@ function toggleLoginModal()
 {
     $("#loginModal").fadeToggle();
 }
+
+function toggleSignupModal()
+{
+    $("#signupModal").fadeToggle();
+}
