@@ -47,9 +47,12 @@
             <div class="w3-display-middle" style="white-space:nowrap;">
                 <span class="w3-xxlarge w3-black w3-text-white w3-wide w3-center w3-padding-large w3-animate-opacity">MOVIES</span>
             </div>
+            <button class="w3-button w3-display-left w3-black w3-hover-white" onclick="nextSlide(-1)">&#10094;</button>
+            <button class="w3-button w3-display-right w3-black w3-hover-white" onclick="nextSlide(+1)">&#10095;</button>
             <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
-                <span class="w3-badge demo w3-border w3-transparent w3-hover-white w3-white" onclick="showSlide(0)" id = "circle0"></span>
-                <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="showSlide(1)" id = "circle1"></span>
+                <span class="w3-badge w3-border w3-transparent w3-hover-white slide" onclick="showSlide(0)"></span>
+                <span class="w3-badge w3-border w3-transparent w3-hover-white slide" onclick="showSlide(1)"></span>
+                <span class="w3-badge w3-border w3-transparent w3-hover-white slide" onclick="showSlide(1)"></span>
             </div>
         </div>
         
@@ -133,7 +136,24 @@
             <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
         </footer>
 
-        <script src="index_js.js"></script>
+        <script type="text/javascript">
+            function myMap()
+            {
+              myCenter=new google.maps.LatLng(41.878114, -87.629798);
+              var mapOptions= {
+                center:myCenter,
+                zoom:12, scrollwheel: false, draggable: false,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+              };
+              var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+
+              var marker = new google.maps.Marker({
+                position: myCenter,
+              });
+              marker.setMap(map);
+            }
+        </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZp9GHQ1w3ojKZTNj2ZjGjL9xk-1HkCuo&callback=myMap"></script>
+
     </body>
 </html>

@@ -1,20 +1,3 @@
-
-function myMap()
-{
-  myCenter=new google.maps.LatLng(41.878114, -87.629798);
-  var mapOptions= {
-    center:myCenter,
-    zoom:12, scrollwheel: false, draggable: false,
-    mapTypeId:google.maps.MapTypeId.ROADMAP
-  };
-  var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
-
-  var marker = new google.maps.Marker({
-    position: myCenter,
-  });
-  marker.setMap(map);
-}
-
 // Modal Image Gallery
 function onClick(element) {
   document.getElementById("img01").src = element.src;
@@ -45,6 +28,7 @@ function toggleFunction() {
 }
 
 var slideIndex = 0;
+var timeHandle;
 
 function nextSlide(index)
 {
@@ -52,33 +36,41 @@ function nextSlide(index)
 }
 function showSlide(index)
 {
+    clearTimeout(timeHandle);
+
     var movieImages = ['assets/Movie1.jpg', 'assets/Movie2.jpg'];
     if(index >= movieImages.length)
         index = 0;
     else if(index < 0)
         index = movieImages.length - 1;
-    if(index != slideIndex)
-    {    
-        slideIndex = index;
-        $(".bgimg-2").fadeOut(0);
-        $(".bgimg-2").css("background-image", "url('" + movieImages[index] + "')");
-        $(".bgimg-2").fadeIn(500);
 
-        /*$circles = $(".w3-badge");
-        for (var i = 0; i < circles.length; i++) {
-            circles[i].removeClass("w3-white");
-        }*/
-        switch(index)
-        {
-            case 0: 
-                $("#circle0").addClass("w3-white"); 
-                $("#circle1").removeClass("w3-white");
-                break;
-            case 1:
-                $("#circle1").addClass("w3-white"); 
-                $("#circle0").removeClass("w3-white");
-                break;
-        }
-        
+    slideIndex = index;
+
+    $(".bgimg-2").fadeOut(0);
+    $(".bgimg-2").css("background-image", "url('" + movieImages[index] + "')");
+    $(".bgimg-2").stop();
+    $(".bgimg-2").fadeIn(500);
+
+    toggleSlideBadge();
+
+    timeHandle = setTimeout(function(){showSlide(slideIndex + 1)}, 5000);
+}
+
+function toggleSlideBadge()
+{
+    slides = $(".slide");
+    for (var i = 0; i < slides.length; i++) {
+        $(slides[i]).removeClass("w3-white");
     }
+    $(slides[slideIndex]).addClass("w3-white");
+}
+
+$(document).ready(function(){
+    showSlide(0);
+
+}); 
+
+function toggleLoginModal()
+{
+    $("#loginModal").fadeToggle();
 }
