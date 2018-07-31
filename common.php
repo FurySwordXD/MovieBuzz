@@ -22,8 +22,8 @@
         <a href="#theatres" class="w3-bar-item w3-button w3-hide-small w3-ripple w3-text-white w3-hover-teal"><i class="fa fa-user"></i> THEATRES</a>
         <a href="#movies" class="w3-bar-item w3-button w3-hide-small w3-ripple w3-text-white w3-hover-teal"><i class="fa fa-th"></i> MOVIES</a>
         <a href="#about" class="w3-bar-item w3-button w3-hide-small w3-ripple w3-text-white w3-hover-teal"><i class="fa fa-envelope"></i> ABOUT</a>
-        <a class="w3-bar-item w3-button w3-hide-small w3-ripple w3-text-white w3-hover-teal w3-right" onclick="toggleLoginModal()"><i class="fa fa-user"></i> LOGIN</a>
-        <a class="w3-bar-item w3-button w3-hide-small w3-ripple w3-text-white w3-hover-teal w3-right" onclick="toggleSignupModal()"><i class="fa fa-user-circle"></i> SIGN UP</a>
+        <a class="w3-bar-item w3-button w3-hide-small w3-ripple w3-text-white w3-hover-teal w3-right" onclick="toggleLoginModal()" id="loginBtn"><i class="fa fa-user"></i> LOGIN</a>
+        <a class="w3-bar-item w3-button w3-hide-small w3-ripple w3-text-white w3-hover-teal w3-right" onclick="toggleSignupModal()" id="signupBtn"><i class="fa fa-user-circle"></i> SIGN UP</a>
     </div>
 
     <!-- Navbar on small screens -->
@@ -39,7 +39,7 @@
 
         <h3 class="w3-wide w3-text-black w3-center">LOG IN</h3>
         <span class="w3-button w3-black w3-xlarge w3-hover-red w3-display-topright" onclick="toggleLoginModal()">&times;</span>
-        <form class="w3-container">
+        <form class="w3-container" id="loginForm">
 
             <label class="w3-text-teal">Email</label>
             <input class="w3-input" type="text" name="Email">
@@ -49,7 +49,7 @@
             
             <br>
             <center>
-                <button class="w3-btn w3-black" style="width: 25%">Log in</button><br><br>
+                <button class="w3-btn w3-black" type=button style="width: 30%" onclick="login()">Log in</button><br><br>
                 <a href="#" onclick="toggleLoginModal();toggleSignupModal();">  Don't have an account yet?</a>
             </center>
         </form>
@@ -62,7 +62,7 @@
 
         <h3 class="w3-wide w3-text-black w3-center">SIGN UP</h3>
         <span class="w3-button w3-black w3-xlarge w3-hover-red w3-display-topright" onclick="toggleSignupModal()">&times;</span>
-        <form class="w3-container">
+        <form class="w3-container" id="signupForm">
             
             <label class="w3-text-teal">Name</label>
             <input class="w3-input" type="text" name="Name">
@@ -78,7 +78,7 @@
             
             <br>
             <center>
-                <button class="w3-btn w3-black" style="width: 25%">Sign up</button><br><br>
+                <button class="w3-btn w3-black" type=button style="width: 25%" onclick="signup()">Sign up</button><br><br>
                 <a href="#" onclick="toggleSignupModal();toggleLoginModal();">  Already have an account?</a>
             </center>
         </form>

@@ -7,7 +7,7 @@ $password = "";
 $database = "MovieBuzz";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password);
+$conn = new mysqli($servername, $username, $password, $database);
 
 // Check connection
 if ($conn->connect_error) {
@@ -15,6 +15,7 @@ if ($conn->connect_error) {
 } 
 echo "Connected successfully! ";
 
+/*
 function createDatabse()
 {
 	global $database, $conn;	
@@ -72,4 +73,5 @@ else
 		}
 	}
 }
+*/
 ?>

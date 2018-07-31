@@ -79,3 +79,45 @@ function toggleSignupModal()
 {
     $("#signupModal").fadeToggle();
 }
+
+function signup()
+{
+    var datastring = $("#signupForm").serialize();
+    console.log(datastring);
+
+    $.ajax({
+        type: "POST",
+        url: "signup.php",
+        data: datastring,
+        success: function(data){ 
+            console.log(data);
+            onLoggedIn();
+            toggleSignupModal();
+        }
+    });
+   
+}
+
+function login()
+{
+    var datastring = $("#loginForm").serialize();
+    console.log(datastring);
+
+    $.ajax({
+        type: "POST",
+        url: "login.php",
+        data: datastring,
+        success: function(data){ 
+            console.log(data); 
+            onLoggedIn();
+            toggleLoginModal();
+        }
+    });
+   
+}
+
+function onLoggedIn()
+{
+    $("#loginBtn").hide();
+    $("#signupBtn").hide();
+}
