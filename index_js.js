@@ -67,7 +67,7 @@ function toggleSlideBadge()
 
 $(document).ready(function(){
     showSlide(0);
-
+    $("#profileBtn").hide();
 }); 
 
 function toggleLoginModal()
@@ -107,17 +107,23 @@ function login()
         type: "POST",
         url: "login.php",
         data: datastring,
-        success: function(data){ 
-            console.log(data); 
-            onLoggedIn();
-            toggleLoginModal();
+        success: function(data){
+            if(data.indexOf("Logged in") >= 0)
+            {
+                console.log(data);
+                name =  data.substring(data.indexOf("Name: ") + "Name: ".length, data.length);
+                onLoggedIn(name);
+                toggleLoginModal();
+            }
         }
     });
    
 }
 
-function onLoggedIn()
+function onLoggedIn(name)
 {
     $("#loginBtn").hide();
     $("#signupBtn").hide();
+    $("#profileBtn").show();
+    $("#profileBtn").text(name);
 }

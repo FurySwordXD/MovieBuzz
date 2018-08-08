@@ -12,6 +12,7 @@
 	$result = $conn->query($sql);
 	
 	foreach ($result as $row) {
-		echo "Logged in";
+		echo "Logged in!";
+		echo "Name: " . $row["Name"];
 	}
 ?>

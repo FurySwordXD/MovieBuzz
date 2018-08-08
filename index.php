@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html>
-    
-    <body>
+<?php include 'common.php'; ?>
 
-        <?php include 'common.php'; ?>
+<html>
+    <body>
 
         <!-- First Parallax Image with Logo Text -->
         <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
@@ -60,19 +58,47 @@
             <h3 class="w3-center w3-text-teal">Now Showing...</h3>
 
             <?php
-                $movieImages = array('assets/movies/junga.jpg', 'assets/movies/antman.jpg', 'assets/movies/tamizhpadam2.jpg');
-                for ($row = 0; $row < 2; $row++) 
+
+                include 'dbconnection.php';
+
+                $sql = "SELECT Name, ImageLocation FROM Movies";
+
+                $moviesCount = -1;
+                $movieNames = array();
+                $movieLocations = array();
+
+                $result = $conn->query($sql);
+                foreach ($result as $row) 
+                {
+                    array_push($movieNames, $row["Name"]);
+                    array_push($movieLocations, $row["ImageLocation"]);
+                    $moviesCount++;
+                }
+
+
+                // array('assets/movies/junga.jpg', 'assets/movies/antman.jpg', 'assets/movies/tamizhpadam2.jpg');
+                $index = 0; 
+                for ($row = 0; $row < 2; $row++) //($row * 4 + $column) % count($movieLocations)
                 {
                     echo "<div class = 'w3-row'>";
-                    for ($column = 0; $column < 4; $column++) { 
+                    for ($column = 0; $column < 4; $column++) {
+
+                        if($index > $moviesCount)
+                            break;
+
                         echo "<div class = 'w3-col l3 m6 s12 w3-center w3-padding-small'>";
-                        echo "<div class = 'w3-card-4' style = 'background-color: #353535'>";
-                        echo "<img src=". $movieImages[($row * 4 + $column) % count($movieImages)] ." class='w3-hover-opacity' style='width:100%'>";
-                        echo "<div class = 'w3-container w3-text-white'> Movie name </div>";
-                        echo "</div></div>";
+                        echo "<form action = 'movie.php' method = 'GET'>";
+                        echo "<button class = 'w3-card-4 w3-btn w3-hover-opacity' style = 'background-color: #353535; padding:0;' type = 'submit' name = 'MovieName' value = '". $movieNames[$index] ."'>";
+                        echo "<img src=". $movieLocations[$index] ."  style='width:100%'>";
+                        echo "<div class = 'w3-container'>" . $movieNames[$index] . "</div>";
+                        echo "</button></form>";
+                        echo "</div>";
+                        $index++;
                     }
                     echo "</div><br>";
                 }
+
+                mysqli_close($conn);
             ?>
             <br><br>
         </div>
