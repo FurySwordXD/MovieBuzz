@@ -26,6 +26,9 @@
     echo "</div>";
     echo "</div><br>";
 
+    echo "<div class = 'w3-container w3-content w3-card-4 w3-padding-large' id = 'SelectionDetails'><br>";
+    echo "</div>";
+
     echo "<div class = 'w3-container w3-content w3-card-4 w3-padding-large w3-center'><br>";
     $rows = array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
     for ($j = 0; $j < 20; $j++)
@@ -36,10 +39,12 @@
     for ($i=0; $i < 15; $i++) {
     	echo $rows[$i];
     	for ($j=0; $j < 20; $j++) { 
-    	 	echo "<img class = 'w3-hover-opacity' src = 'assets/Icons/seat.png' style = 'width:4%;padding:5px;margin:0px;'>";
+    	 	echo "<img class = 'w3-hover-opacity' src = 'assets/Icons/seat.png' style = 'width:4%;padding:5px;margin:0px;' onclick = 'onSeatSelected(this);' id = '" . $rows[$i] . $j . "'>";
     	}
     	echo "<br><br>"; 
     }
     echo "</div>";
     mysqli_close($conn);
 ?>
+
+<script type="text/javascript" src="movie.js"></script>
