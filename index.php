@@ -1,9 +1,7 @@
-<!DOCTYPE html>
-<html>
-    
-    <body>
+<?php include 'common.php'; ?>
 
-        <?php include 'common.php'; ?>
+<html>
+    <body>
 
         <!-- First Parallax Image with Logo Text -->
         <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
@@ -26,7 +24,7 @@
                         echo "<div class = 'w3-col l6 m6 s12 w3-center w3-padding-small'>";
                         echo "<div class = 'w3-card-4' style = 'background-color: #353535'>";
                         echo "<img src=". $thatreImages[($row * 4 + $column) % count($thatreImages)] ." class='w3-hover-opacity' style='width:100%'>";
-                        echo "<div class = 'w3-container'> Theatre name </div>";
+                        echo "<div class = 'w3-container w3-text-white'> Theatre name </div>";
                         echo "</div></div>";
                     }
                     echo "</div><br>";
@@ -47,30 +45,60 @@
             <div class="w3-display-middle" style="white-space:nowrap;">
                 <span class="w3-xxlarge w3-black w3-text-white w3-wide w3-center w3-padding-large w3-animate-opacity">MOVIES</span>
             </div>
+            <button class="w3-button w3-display-left w3-black w3-hover-white" onclick="nextSlide(-1)">&#10094;</button>
+            <button class="w3-button w3-display-right w3-black w3-hover-white" onclick="nextSlide(+1)">&#10095;</button>
+            <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+                <span class="w3-badge w3-border w3-transparent w3-hover-white slide" onclick="showSlide(0)"></span>
+                <span class="w3-badge w3-border w3-transparent w3-hover-white slide" onclick="showSlide(1)"></span>
+            </div>
         </div>
-
+        
         <!-- Container (Movies Section) -->
-        <div class="w3-content w3-container w3-padding-64" >
+        <div class="w3-content w3-container w3-padding-64">
             <h3 class="w3-center w3-text-teal">Now Showing...</h3>
 
             <?php
 
                 include 'dbconnection.php';
 
-                $movieImages = array('assets/movies/junga.jpg', 'assets/movies/antman.jpg', 'assets/movies/tamizhpadam2.jpg');
-                for ($row = 0; $row < 2; $row++) 
+                $sql = "SELECT Name, ImageLocation FROM Movies";
+
+                $moviesCount = -1;
+                $movieNames = array();
+                $movieLocations = array();
+
+                $result = $conn->query($sql);
+                foreach ($result as $row) 
+                {
+                    array_push($movieNames, $row["Name"]);
+                    array_push($movieLocations, $row["ImageLocation"]);
+                    $moviesCount++;
+                }
+
+
+                // array('assets/movies/junga.jpg', 'assets/movies/antman.jpg', 'assets/movies/tamizhpadam2.jpg');
+                $index = 0; 
+                for ($row = 0; $row < 2; $row++) //($row * 4 + $column) % count($movieLocations)
                 {
                     echo "<div class = 'w3-row'>";
-                    for ($column = 0; $column < 4; $column++) { 
+                    for ($column = 0; $column < 4; $column++) {
+
+                        if($index > $moviesCount)
+                            break;
+
                         echo "<div class = 'w3-col l3 m6 s12 w3-center w3-padding-small'>";
-                        echo "<div class = 'w3-card-4' style = 'background-color: #353535'>";
-                        echo "<img src=". $movieImages[($row * 4 + $column) % count($movieImages)] ." class='w3-hover-opacity' style='width:100%'>";
-                        echo "<div class = 'w3-container'> Movie name </div>";
-                        echo "</div></div>";
+                        echo "<form action = 'movie.php' method = 'GET'>";
+                        echo "<button class = 'w3-card-4 w3-btn w3-hover-opacity' style = 'background-color: #353535; padding:0;' type = 'submit' name = 'MovieName' value = '". $movieNames[$index] ."'>";
+                        echo "<img src=". $movieLocations[$index] ."  style='width:100%'>";
+                        echo "<div class = 'w3-container'>" . $movieNames[$index] . "</div>";
+                        echo "</button></form>";
+                        echo "</div>";
+                        $index++;
                     }
                     echo "</div><br>";
                 }
 
+                mysqli_close($conn);
             ?>
             <br><br>
         </div>
@@ -129,7 +157,24 @@
             <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
         </footer>
 
-        <script src="index_js.js"></script>
+        <script type="text/javascript">
+            function myMap()
+            {
+              myCenter=new google.maps.LatLng(41.878114, -87.629798);
+              var mapOptions= {
+                center:myCenter,
+                zoom:12, scrollwheel: false, draggable: false,
+                mapTypeId:google.maps.MapTypeId.ROADMAP
+              };
+              var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+
+              var marker = new google.maps.Marker({
+                position: myCenter,
+              });
+              marker.setMap(map);
+            }
+        </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZp9GHQ1w3ojKZTNj2ZjGjL9xk-1HkCuo&callback=myMap"></script>
+
     </body>
 </html>
